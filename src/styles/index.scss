@@ -1,0 +1,36 @@
+@import "fontawesome/scss/fa-solid.scss";
+@import 'fontawesome/scss/fontawesome.scss';
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-size: 12px;
+}
+
+div, p, ul, li, ol, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: #4263F5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4170F5;
+}
+
+input {
+  padding: 3px 5px;
+  margin: 0;
+  font-size: 12px;
+}
+
+input, button {
+  border: #D4E3FF 1px solid;
+}
