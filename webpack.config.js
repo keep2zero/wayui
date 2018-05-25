@@ -30,8 +30,12 @@ module.exports =  {
          loader: 'vue-loader'
        },
        {
+         test: /\.less$/,
+         loader: 'less-loader'
+       },
+       {
             test: /\.(s?)css$/,
-            use: extractSass.extract({
+            use: ['css-hot-loader'].concat(extractSass.extract({
                 use: [
 
                   {
@@ -52,7 +56,7 @@ module.exports =  {
                 ],
                 // use style-loader in development
                 fallback: "style-loader"
-            })
+            }))
         },
 
         {
