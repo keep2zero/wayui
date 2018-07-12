@@ -60,6 +60,11 @@ module.exports =  {
         },
 
         {
+          test: /\.less/,
+          use: [{loader: "less-loader"}]
+        },
+
+        {
           test: /\.(eot|svg|ttf|woff|woff2)$/,
           use: [{loader: "file-loader"}]
         }
