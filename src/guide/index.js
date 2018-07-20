@@ -8,6 +8,7 @@ import DialogView from "./dialog.vue";
 import CheckboxView from "./checkbox.vue";
 import RadioView from "./radio.vue";
 import SwitchView from "./switch.vue";
+import SliderView from "./slider.vue";
 export default [
   {
     path: "/input",
@@ -56,5 +57,10 @@ export default [
   {
     path: "/switch",
     component: SwitchView
+  },
+
+  {
+    path: "/slider",
+    component: SliderView
   }
 ]
