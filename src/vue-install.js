@@ -11,6 +11,7 @@ import Checkbox from '@/components/checkbox';
 import Radio from '@/components/radio';
 import Switch from '@/components/switch';
 import Slider from '@/components/slider';
+import InputNumber from '@/components/input-number';
 
 let VueTarget = null;
 
@@ -30,7 +31,7 @@ const install = function(vue, option) {
   vue.component('HdRadio', Radio);
   vue.component('HdSwitch', Switch);
   vue.component('hdSlider', Slider);
-
+  vue.component('HdInputNumber', InputNumber);
   VueTarget = vue;
   
  

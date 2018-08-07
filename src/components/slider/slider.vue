@@ -1,5 +1,5 @@
 <template>
-  <div class="['hd-slider' 'hd-slider-' + direct]">
+  <div :class="['hd-slider', 'hd-slider-' + direct]">
     <div class="hd-slider__track">
       <div class="hd-slider__selection" style="left: 0%; width: 60%;"></div>
       <div class="hd-slider__handle round" style="left: 60%;"></div>

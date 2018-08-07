@@ -9,6 +9,7 @@ import CheckboxView from "./checkbox.vue";
 import RadioView from "./radio.vue";
 import SwitchView from "./switch.vue";
 import SliderView from "./slider.vue";
+import InputNumberView from "./input-number.vue";
 export default [
   {
     path: "/input",
@@ -62,5 +63,10 @@ export default [
   {
     path: "/slider",
     component: SliderView
+  },
+
+  {
+    path: "/number",
+    component: InputNumberView
   }
 ]

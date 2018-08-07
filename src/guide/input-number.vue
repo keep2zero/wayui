@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+    <hd-input-number></hd-input-number>
+  </div>
 </template>
 
 <script>
