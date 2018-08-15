@@ -3,6 +3,22 @@
 </template>
 
 <script>
+class Button {
+  constructor() {
+    this.width = 0;
+    this.height = 0;
+    this.stroke = 1;
+    this.borderColor = '';
+    this.className = '';
+  }
+
+
+  render() {
+    return (
+      
+    );
+  }
+}
   export default {
     props: {
       icon: {
@@ -18,17 +34,19 @@
 </script>
 
 <style lang="less">
+
 .hd-button {
-  min-width: 90px;
-  font-size: 14px;
-  min-height: 30px;
-  line-height: 30px;
+  min-width: 7.5rem;
+  font-size: 1.17rem;
+  min-height: 3rem;
+  line-height: 3rem;
   display: inline-flex;
-  border: #DFE3E9 1px solid;
-  border-radius: 15px;
+  border: #DFE3E9 0.0625rem solid;
+  border-radius: .67rem;
   cursor: pointer;
+  box-shadow: 0 10px 10px -5px rgba(222, 226, 231, 0.2);
   &:hover, &:focus {
-    box-shadow: 0 0 4px 0 #DFE3E9;
+    box-shadow: 0 0 8px 0 #4E86FF;
   }
   justify-content: center;
 }
@@ -60,14 +78,15 @@
 .hd-button-primary-depth,
 .hd-button-primary-shallow {
   color: #fff;
+  border: 0;
   .hd-button__icon .fe{
     color: #fff;
   }
 }
 
 .hd-button-danger {
-  background-color: #FF7A83;
-  border-color: #FF7A83;
+  background: linear-gradient(45deg, #FF617F 0%, #FF4772 100%);
+  box-shadow: 0 10px 10px -5px rgba(255, 86, 118, 0.2);
   &:visited, &:focus, &:active {
     border-color: #FF0000;
     box-shadow: 0 0 4px 0 #FF7A83;
@@ -75,8 +94,8 @@
 }
 
 .hd-button-primary {
-  background-color: #5EBBFF;
-  border-color: #5EBBFF;
+  background: linear-gradient(45deg, #5AB2FF 0%, #5B8EFF 100%);
+  box-shadow: 0 10px 10px -5px rgba(78, 134, 255, 0.2);
   &:visited, &:focus, &:active {
     border-color: #0093FF;
     box-shadow: 0 0 4px 0 #5EBBFF;
@@ -84,8 +103,8 @@
 }
 
 .hd-button-primary-depth {
-  background-color: #ABC5E2;
-  border-color: #ABC5E2;
+  background: linear-gradient(45deg, #3A9FF6 0%, #5B8EFF 100%);
+  box-shadow: 0 10px 10px -5px rgba(90, 178, 255, 0.3);
   &:visited, &:focus, &:active {
     border-color: #0093FF;
     box-shadow: 0 0 4px 0 #ABC5E2;
@@ -93,8 +112,8 @@
 }
 
 .hd-button-primary-shallow {
-  background-color: #73DAFF;
-  border-color: #73DAFF;
+  background: linear-gradient(45deg, #71CDFF 0%, #5AB2FF);
+  box-shadow: 0 10px 10px -5px rgba(90, 178, 255, 0.2);
   &:visited, &:focus, &:active {
     box-shadow: 0 0 4px 0 #73DAFF;
     border-color: #00BCFF;
