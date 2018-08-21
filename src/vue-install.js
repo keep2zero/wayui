@@ -13,6 +13,12 @@ import Switch from '@/components/switch';
 import Slider from '@/components/slider';
 import InputNumber from '@/components/input-number';
 
+
+//style
+import "@/styles/button.scss";
+
+//
+
 let VueTarget = null;
 
 const install = function(vue, option) {

@@ -1,48 +1,56 @@
 import Component from '@/types/component';
- 
+import {toEm} from '@/utils/css';
 class Button extends Component {
   constructor(button, options) {
       super(options); 
-      this.width = 80;
-      this.height = 32;
+      this.width = {
+        type: String|Number,
+        default: 'auto'
+      };
+      this.height = {
+        type: String | Number,
+        default: 'auto'
+      };
       this._button = button || null;
-      this.text = "";  
-      this.computed = {
- 
-      }
+      this.text = ""; 
+      this.type = ""; 
       
   }
 
   render(h) {
     const slot = this.$slots.default;  
-    return <button  type="button"
-    style={{width: this.width + 'px', height: this.height + 'px'}}>
-      {this.text}{slot}
-    </button>;
+    const style = {width: toEm(this.width), height: toEm(this.height)};
+    const classes = ['hd-button', this.type ? 'hd-button-' + this.type : ''];
+    return (
+      <div class={classes}> 
+        <button class="hd-button__btn" type="button"  style={style}> {this.text}{slot} </button>
+      </div>
+    );
+    
     
   }
 }
 
-class BorderButton extends Button {
+
+class IconButton extends Button {
 
     constructor(button) {
         super(button);
         this.borderColor = 'red';
         this.borderWidth = 1;
         this.borderStyle = 'solid';
+        this.icon = "";
     }
 
     render(h) {
       const node = super.render(h);
-      node.data.style.borderColor =  this.borderColor;
-      node.data.style.borderWidth = this.borderWidth;
-      node.data.style.borderStyle = this.borderStyle;
+      this.icon && node.children.unshift(<hd-icon class="hd-button__icon" icon={this.icon}></hd-icon>)
       return node;
     }
 }
 
 
-class BackgroundButton extends BorderButton {
+class BackgroundButton extends IconButton {
 
    constructor() {
      super() 
