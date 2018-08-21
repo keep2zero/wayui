@@ -1,62 +1,67 @@
-import Vue from 'vue';
-class Component {
-    constructor() {
-       this.render ? (this.render = this.render) : this.render = (h)=>{ return h('')};
-       console.log("Component constructor"); 
-    }
-
-    render(h) {
-        return h("h1", null, "Component")
-    }
-}
-const component = new Component();
-console.log("component", component);
-
-const VueComponent = Vue.extend(component);
-
-console.log("VueComponent", VueComponent, VueComponent.prototype);
-
-class Button extends VueComponent {
+import Component from '@/types/component';
+ 
+class Button extends Component {
   constructor(button, options) {
-      super(options);
-      this.render ? (this.render = this.render) : this.render = (h)=>{ return h('')};
-      this.button = button;
+      super(options); 
+      this.width = 80;
+      this.height = 32;
+      this._button = button || null;
+      this.text = "";  
+      this.computed = {
+ 
+      }
+      
   }
 
   render(h) {
-    return h("h1", null, "")
+    const slot = this.$slots.default;  
+    return <button  type="button"
+    style={{width: this.width + 'px', height: this.height + 'px'}}>
+      {this.text}{slot}
+    </button>;
+    
   }
 }
 
 class BorderButton extends Button {
-     
+
+    constructor(button) {
+        super(button);
+        this.borderColor = 'red';
+        this.borderWidth = 1;
+        this.borderStyle = 'solid';
+    }
+
     render(h) {
-      return h("div", {}, ["this is test"])
+      const node = super.render(h);
+      node.data.style.borderColor =  this.borderColor;
+      node.data.style.borderWidth = this.borderWidth;
+      node.data.style.borderStyle = this.borderStyle;
+      return node;
     }
 }
 
 
-class BackgroundButton extends Button {
-   
+class BackgroundButton extends BorderButton {
 
+   constructor() {
+     super() 
+     this.props['backgorund'] = {
+       type: String,
+       default: '#fff'
+     }
+   }
+   
    render(h) {
     
-     const node =  this.button.render(h);
-     console.log(node, "hello", this.button)
-    
+     const node =  super.render(h);
      return node;
    }
 }
 
  
 
-const button = new Button({render() {
-    return h('h1', null, '');
-}});
-console.log("--------------------->", button)
-const border = new BorderButton(button);
-console.log("--------------------->")
-const background = new BackgroundButton(border);
-
-console.log(background)
-export default background;
+ 
+  
+ 
+export default BackgroundButton.toComponent();
