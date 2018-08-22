@@ -36,15 +36,23 @@ class IconButton extends Button {
 
     constructor(button) {
         super(button);
-        this.borderColor = 'red';
-        this.borderWidth = 1;
-        this.borderStyle = 'solid';
+        this.borderColor = '';
+        this.borderWidth = 0;
+        this.borderStyle = '';
+        this.borderRadius = 0;
         this.icon = "";
     }
 
     render(h) {
       const node = super.render(h);
-      this.icon && node.children.unshift(<hd-icon class="hd-button__icon" icon={this.icon}></hd-icon>)
+      node.data.style = {
+        borderColor : this.borderColor,
+        borderWidth : this.borderWidth,
+        borderStyle : this.borderStyle,
+        borderRadius: this.borderRadius
+      }
+      console.log(node)
+      this.icon && node.children.unshift(<way-icon class="hd-button__icon" icon={this.icon}></way-icon>)
       return node;
     }
 }

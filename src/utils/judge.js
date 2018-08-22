@@ -14,8 +14,8 @@
     return false;
   }
 
-  export function isTrueNotStr(value) {
-    if(value || typeof value === "string") {
+  export function isTrueNotUndefined(value) {
+    if(value !== undefined) {
       return true
     }
     return false;

@@ -1,4 +1,4 @@
-import {isUndefined, isTrue, isTrueNotStr, isType, isSimpleType} from "@/utils/judge"
+import {isUndefined, isTrue, isTrueNotUndefined, isType, isSimpleType} from "@/utils/judge"
  
 
 const HOOK = ['data', 'props', 'propsData', 'computed', 'methods',
@@ -75,12 +75,15 @@ class AttrTemplate {
     buildProps(k) {
         const prefix = k[0];
         const value = this.object[k];
-        
+        // console.log(k, typeof (this.object[k]), this.object[k]);
+        // console.log( (this.object[k]).constructor) 
         if (HOOK.indexOf(k) === -1 && prefix !== '_' && prefix !== '$') {
-            if(isTrueNotStr(value)){
+            console.log("value", k,  value, isTrueNotUndefined(value))
+            if(isTrueNotUndefined(value)){
                 if(isType(value, Object) && value.hasOwnProperty('type')) { //是否是props定义的类型
                   this.props[k] = value;
                 } else {
+                    console.log(k, value)
                     this.props[k] = {
                         type: (value).constructor,
                         default: isSimpleType(value)? value : (()=> value) //如果是对象则需要设定为一个函数

@@ -27,7 +27,7 @@ const install = function(vue, option) {
   vue.component('HdButton', Button);
   vue.component('HdAreaSelect', AreaSelect);
   vue.component('HdTree', Tree);
-  vue.component('HdIcon', EimIcon);
+  vue.component('WayIcon', EimIcon);
   vue.component('Fe', EimIcon);
   vue.component('HdIcon', EimIcon);
   vue.component('HdRow', Layout.Row);

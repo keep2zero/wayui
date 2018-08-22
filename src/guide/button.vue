@@ -1,7 +1,7 @@
 <template>
   
     <div class="button-box">
-      <hd-button text="默认" :width="width" :height="height" :borderColor="borderColor">默认</hd-button>
+      <hd-button text="默认" :width="width" :height="height" :borderRadius="100" :borderColor="borderColor">默认</hd-button>
       <hd-button :icon="icon">返回</hd-button>
       <hd-button type="danger" icon="close">危险</hd-button>
       <hd-button icon="eye" type="primary">正常</hd-button>
@@ -16,7 +16,7 @@ export default {
     return {
       width: 180 + 'px',
       height: 'auto',
-      borderColor: "#fff",
+      borderColor: "#ff6600",
       icon: "left"
     }
   },
