@@ -40,6 +40,8 @@ class IconButton extends Button {
           type: String | Boolean,
           default: false
         };
+
+        
         this.borderWidth = {
           type: String | Boolean,
           default: false

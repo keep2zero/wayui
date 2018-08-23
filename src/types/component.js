@@ -25,8 +25,8 @@ const HOOK = ['data', 'props', 'propsData', 'computed', 'methods',
 export default class Component {
     static toComponent() {
         const _this =new this();
+        console.log("this,,,,,,", _this)
         _this.instance();
-        console.log(_this)
         return _this;
     }
     constructor(options) {

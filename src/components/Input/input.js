@@ -27,10 +27,7 @@ class Input extends Component {
       default: true
     }
 
-    this._text = this.value
-
-
-
+    this._text = ''
 
     this.computed = {
       empty() {
@@ -46,7 +43,9 @@ class Input extends Component {
          this.$emit("input", this.text);
       },
 
-      change() {
+      change(e) {
+        console.log("e.target", e)
+         this.text = e.target.value;
          this.$emit("input", this.text);
       }
     }
@@ -55,10 +54,10 @@ class Input extends Component {
   render(h) {
 
      let prefix = "";
-     console.log("slots", this.$slots)
+     console.log("slots---->", this.change)
      let iconPrefix = "";
      if(this.iconPrefix) {
-         iconPrefix =  <hd-icon icon={this.iconPrefix}></hd-icon>;
+         iconPrefix =  <way-icon icon={this.iconPrefix}></way-icon>;
      }
      if(this.iconPrefix || this.$slots.prefix) {
        prefix = (
@@ -94,15 +93,12 @@ class Input extends Component {
 
     return (
       <div class="way-input">
-      
         {prefix}
-      
         <div class="way-input__input">
-          <input type="text" v-model="text" placeholder={this.place} onChange={this.change} />
+          <input type="text" placeholder={this.place} onChange={this.change} />
           {closeDom}
         </div>
         {suffix}
-      
       </div>
     )
   }

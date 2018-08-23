@@ -1,7 +1,7 @@
 <template>
   
     <div class="button-box">
-      <hd-button text="默认" :width="width" :height="height" :borderRadius="5" :borderColor="borderColor">默认</hd-button>
+      <hd-button text="默认" :width="width" :height="height" :borderRadius="5" :borderColor="borderColor"> 默认</hd-button>
       <hd-button :icon="icon">返回</hd-button>
       <hd-button type="danger" icon="close">危险 <way-icon icon="select"></way-icon></hd-button>
       <hd-button icon="eye" type="primary">正常</hd-button>
