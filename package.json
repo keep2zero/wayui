@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keep2zero/hdui.git"
+    "url": "git+https://github.com/keep2zero/wayui.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/keep2zero/hdui/issues"
   },
-  "homepage": "https://github.com/keep2zero/hdui#readme",
+  "homepage": "https://github.com/keep2zero/wayui#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
