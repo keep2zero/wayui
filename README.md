@@ -1,6 +1,6 @@
-# hdui
-ui框架
+# wayui
+vue ui framework
 
 
-# 遗留问题
-1. Tree组件还未完成
+# problem
+1. Tree component is unfinished.
