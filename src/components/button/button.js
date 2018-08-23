@@ -20,10 +20,10 @@ class Button extends Component {
   render(h) {
     const slot = this.$slots.default;  
     const style = {width: toEm(this.width), height: toEm(this.height)};
-    const classes = ['hd-button', this.type ? 'hd-button-' + this.type : ''];
+    const classes = ['way-button', this.type ? 'way-button-' + this.type : ''];
     return (
       <div class={classes}> 
-        <button class="hd-button__btn" type="button"  style={style}> {this.text}{slot} </button>
+        <button class="way-button__btn" type="button"  style={style}> {this.text}{slot} </button>
       </div>
     );
     
@@ -36,23 +36,34 @@ class IconButton extends Button {
 
     constructor(button) {
         super(button);
-        this.borderColor = '';
-        this.borderWidth = 0;
-        this.borderStyle = '';
-        this.borderRadius = 0;
+        this.borderColor = {
+          type: String | Boolean,
+          default: false
+        };
+        this.borderWidth = {
+          type: String | Boolean,
+          default: false
+        };
+        this.borderStyle =  {
+          type: String | Boolean,
+          default: false
+        };
+        this.borderRadius =  {
+          type: String | Boolean,
+          default: false
+        };
         this.icon = "";
     }
 
     render(h) {
       const node = super.render(h);
-      node.data.style = {
-        borderColor : this.borderColor,
-        borderWidth : this.borderWidth,
-        borderStyle : this.borderStyle,
-        borderRadius: this.borderRadius
-      }
+      const style = node.data.style = {};
+      this.borderColor !== false && (style.borderColor = this.borderColor);
+      this.borderWidth !== false && (style.borderWidth = toEm(this.borderWidth));
+      this.borderStyle !== false && (style.borderStyle = this.borderStyle);
+      this.borderRadius !== false && (style.borderRadius = toEm(this.borderRadius));
       console.log(node)
-      this.icon && node.children.unshift(<way-icon class="hd-button__icon" icon={this.icon}></way-icon>)
+      this.icon && node.children.unshift(<way-icon class="way-button__icon" icon={this.icon}></way-icon>)
       return node;
     }
 }

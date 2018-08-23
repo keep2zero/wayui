@@ -1,41 +1,5 @@
-<template>
-  <div :class="['hd-button', type?`hd-button-${type}`:'']"><hd-icon v-if="icon" class="hd-button__icon" :icon="icon" /><button class="hd-button__btn"><slot></slot></button></div>
-</template>
 
-<script>
-class Button {
-  constructor() {
-    this.width = 0;
-    this.height = 0;
-    this.stroke = 1;
-    this.borderColor = '';
-    this.className = '';
-  }
-
-
-  render() {
-    return (
-      
-    );
-  }
-}
-  export default {
-    props: {
-      icon: {
-        type: String,
-        default: ''
-      },
-      type: {
-        type: String,
-        default: ''
-      }
-    }
-  }
-</script>
-
-<style lang="less">
-
-.hd-button {
+.way-button {
   min-width: 7.5rem;
   font-size: 1.17rem;
   min-height: 3rem;
@@ -51,14 +15,14 @@ class Button {
   justify-content: center;
 }
 
-.hd-button__icon {
+.way-button__icon {
   margin-right: 8px;
   .fe {
     font-size: 14px;
   }
 }
 
-.hd-button__btn {
+.way-button__btn {
   padding: 0;
   margin: 0;
   border: 0;
@@ -73,18 +37,18 @@ class Button {
   }
 }
 
-.hd-button-primary,
-.hd-button-danger,
-.hd-button-primary-depth,
-.hd-button-primary-shallow {
+.way-button-primary,
+.way-button-danger,
+.way-button-primary-depth,
+.way-button-primary-shallow {
   color: #fff;
   border: 0;
-  .hd-button__icon .fe{
+  .way-button__icon .fe{
     color: #fff;
   }
 }
 
-.hd-button-danger {
+.way-button-danger {
   background: linear-gradient(45deg, #FF617F 0%, #FF4772 100%);
   box-shadow: 0 10px 10px -5px rgba(255, 86, 118, 0.2);
   &:visited, &:focus, &:active {
@@ -93,7 +57,7 @@ class Button {
   }
 }
 
-.hd-button-primary {
+.way-button-primary {
   background: linear-gradient(45deg, #5AB2FF 0%, #5B8EFF 100%);
   box-shadow: 0 10px 10px -5px rgba(78, 134, 255, 0.2);
   &:visited, &:focus, &:active {
@@ -102,7 +66,7 @@ class Button {
   }
 }
 
-.hd-button-primary-depth {
+.way-button-primary-depth {
   background: linear-gradient(45deg, #3A9FF6 0%, #5B8EFF 100%);
   box-shadow: 0 10px 10px -5px rgba(90, 178, 255, 0.3);
   &:visited, &:focus, &:active {
@@ -111,7 +75,7 @@ class Button {
   }
 }
 
-.hd-button-primary-shallow {
+.way-button-primary-shallow {
   background: linear-gradient(45deg, #71CDFF 0%, #5AB2FF);
   box-shadow: 0 10px 10px -5px rgba(90, 178, 255, 0.2);
   &:visited, &:focus, &:active {
@@ -120,16 +84,14 @@ class Button {
   }
 }
 
-.hd-button-disabled {
+.way-button-disabled {
   background-color: #E4E8EC;
   border-color: #E4E8EC;
   color: #bbb;
   &:visited, &:focus, &:active {
     border-color: #E4E8EC;
   }
-  .hd-button__icon .fe{
+  .way-button__icon .fe{
     color: #bbb;
   }
 }
-
-</style>

@@ -26,47 +26,12 @@
 
      props: {
 
-       place: {
-         type: String,
-         default: "请输入"
-       },
-
-       value: {
-         type: String
-       },
-
-       iconPrefix: {
-         type: String,
-         default: ''
-       },
-
-       iconSuffix: {
-         type: String,
-         default: ''
-       },
-       isclear: {
-         type: Boolean,
-         default: true
-       }
+       
      },
 
-     computed: {
-       empty() {
-          return !this.text||this.text.length == 0;
-       }
-     },
+     
 
-     methods: {
-       clear() {
-          this.text = "";
-          this.$emit('clear');
-          this.$emit("input", this.text);
-       },
-
-       change() {
-          this.$emit("input", this.text);
-       }
-     }
+     
   }
 </script>
 

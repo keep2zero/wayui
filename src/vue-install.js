@@ -15,7 +15,7 @@ import InputNumber from '@/components/input-number';
 
 
 //style
-import "@/styles/button.scss";
+import "@/styles/index.scss";
 
 //
 

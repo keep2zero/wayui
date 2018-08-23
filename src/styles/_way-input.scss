@@ -1,0 +1,50 @@
+
+.way-input {
+  position: relative; 
+  display: flex;
+  margin: 0;
+  font-size: 12px;
+  border: #DFE3E9 1px solid;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px; 
+  &:focus,&:hover {
+    box-shadow: 0 0 5px 0 #bbb;
+  }
+  .way-input__input {
+    height: 100%;
+    flex-grow: 2;
+    position: relative;
+    padding-right: 30px;
+    padding-left: 10px;
+    input {
+      border: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  .way-input__addon {
+    display: inline-flex;
+    height: 100%;
+    vertical-align: middle;
+    align-items: center;
+    background-color: #eee;
+    justify-content: center;
+    padding: 10px;
+    
+  }
+}
+
+.way-input__close {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+}
