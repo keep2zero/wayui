@@ -35,7 +35,10 @@ class Button extends Component {
 class IconButton extends Button {
 
     constructor(button) {
+       
         super(button);
+
+        console.log("button", this)
         this.borderColor = {
           type: String | Boolean,
           default: false
@@ -90,7 +93,7 @@ class BackgroundButton extends IconButton {
 
  
 
- 
+console.log("background", BackgroundButton.toComponent())
   
  
-export default BackgroundButton.toComponent();
+export default IconButton.toComponent();

@@ -1,4 +1,6 @@
 import {isUndefined, isTrue, isTrueNotUndefined, isType, isSimpleType} from "@/utils/judge"
+import Vue from "vue";
+import { isObject } from "util";
  
 
 const HOOK = ['data', 'props', 'propsData', 'computed', 'methods',
@@ -22,14 +24,17 @@ const HOOK = ['data', 'props', 'propsData', 'computed', 'methods',
 /**
  * @class
  */
-export default class Component {
+const VueComponent = Vue.extend({});
+export default class Component extends VueComponent {
     static toComponent() {
-        const _this =new this();
+        const _this = new this(this.options = {});
         console.log("this,,,,,,", _this)
-        _this.instance();
+        // _this.instance();
         return _this;
     }
     constructor(options) {
+        super(options);
+        this.options = options;
         this.render = this.render;
         this.$slots = {};
         this.instance.call(this);
@@ -101,4 +106,11 @@ class AttrTemplate {
             this.data[k] = this.object[k];
         }
     }
+}
+
+
+function defData() {
+  if(isObject(arguments[0])) {
+      
+  }
 }
