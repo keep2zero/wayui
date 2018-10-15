@@ -1,0 +1,102 @@
+// .way-row {
+//   display: flex;
+// }
+
+// .way-col {
+//   padding: 5px;
+// }
+
+// .way-col-12 {
+//   flex: 0 0 100%;
+// }
+
+// .way-col-1 {
+//   flex: 0 0 8.333333333333333%;
+// }
+
+// .way-col-2 {
+//   flex: 0 0 16.666666666666666%;
+// }
+
+// .way-col-3 {
+//   flex: 0 0 25%;
+// }
+
+// .way-col-4 {
+//   flex: 0 0 33.333333333333%;
+// }
+
+// .way-col-5 {
+//   flex: 0 0 41.6666666666666%;
+// }
+
+// .way-col-6 {
+//   flex: 0 0 50%;
+// }
+
+// .way-col-7 {
+//   flex: 0 0 58.3333333333333%;
+// }
+
+// .way-col-8 {
+//   flex: 0 0 66.6666666666%;
+// }
+
+// .way-col-9 {
+//   flex: 0 0 75%;
+// }
+
+// .way-col-10 {
+//   flex: 0 0 83.3333333333333%;
+// }
+
+// .way-col-11 {
+//   flex: 0 0 91.66666666666%;
+// }
+
+$col-span: 24;
+$col-span-unit: 100% / $col-span;
+
+// 计算col的宽度, 及偏移的大小.
+$span: $col-span;
+@while $span > 0 {
+
+  //宽度
+  .way-col-#{$span} {
+    width: ($col-span-unit * $span);
+    float: left;
+  }
+
+  //偏移量
+  .way-col-offset-#{$span} {
+    margin-left:  ($col-span-unit * $span);
+  }
+
+  $span : $span - 1;
+} 
+////////////////////////
+
+.way-row {
+  position: relative;
+  zoom: 1;
+  
+  &::after {
+    clear: both;
+  }
+
+}
+
+.way-row-flex {
+  display: flex;
+  $span: $col-span;
+  @while $span > 0 {
+
+    .way-col-#{$span} {
+      flex-basis: $col-span-unit * $span;
+      //align-self: stretch;
+    }
+    
+    $span: $span - 1;
+
+  }
+}

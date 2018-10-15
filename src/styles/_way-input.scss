@@ -1,10 +1,10 @@
-
+// @import 'way-common';
 .way-input {
   position: relative; 
   display: flex;
   margin: 0;
   font-size: 12px;
-  border: #DFE3E9 1px solid;
+  border: $border-default-color 1px solid;
   height: 30px;
   justify-content: center;
   align-items: center;
@@ -48,3 +48,12 @@
   transform: translateY(-50%);
   right: 8px;
 }
+
+@mixin input-type($selector, $color) {
+   #{$selector}:focus, #{$selector}:hover { 
+      box-shadow: 0 0 5px 0 #{$color}; 
+   }
+}
+
+@include input-type('.way-input-primary', $border-primary-color)
+ 

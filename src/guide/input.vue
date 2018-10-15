@@ -1,22 +1,31 @@
 <template>
 <div>
-  <hd-input></hd-input>
+  <way-input :ok="ok"></way-input>
   <br>
-  <hd-input :isclear="true" icon-prefix="search">
-  </hd-input>
+  <way-input   icon-prefix="search" v-model="world" type="PRIMARY">
+  </way-input>
   <br>
-   <hd-input icon-suffix="eye"></hd-input>
+   <way-input icon-suffix="eye"></way-input>
   <br>
-  <hd-input :isclear="true">
+  <way-input :isclear="true">
     <select slot="prefix">
       <option>请选择</option>
     </select>
-  </hd-input>
+  </way-input>
 </div>
 </template>
 
 <script>
 export default {
-  
+  data() {
+    return {hello: false, world: "hello, world", ok: false}
+  },
+
+  mounted() {
+    setTimeout(()=>{
+      this.hello = true;
+      this.ok = !this.ok;
+    }, 3000)
+  }
 }
 </script>

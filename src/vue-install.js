@@ -1,8 +1,8 @@
-import Vue from "vue";
+ 
 import Input from "@/components/input";
 import Button from '@/components/button';
 import Tree from '@/components/Tree';
-// import Icon from '@/components/Icon';
+import Icon from '@/components/icon';
 import EimIcon from '@/components/eimfont';
 import AreaSelect from '@/components/area-select';
 import Layout from '@/components/layout';
@@ -12,7 +12,8 @@ import Radio from '@/components/radio';
 import Switch from '@/components/switch';
 import Slider from '@/components/slider';
 import InputNumber from '@/components/input-number';
-
+import Scroller from '@/components/scroller';
+import DateTime from '@/components/datetime';
 
 //style
 import "@/styles/index.scss";
@@ -23,21 +24,24 @@ let VueTarget = null;
 
 const install = function(vue, option) {
   
-  vue.component("HdInput", Input);
-  vue.component('HdButton', Button);
+  vue.component("WayInput", Input);
+  vue.component('WayButton', Button);
   vue.component('HdAreaSelect', AreaSelect);
   vue.component('HdTree', Tree);
-  vue.component('WayIcon', EimIcon);
+  vue.component('WayIcon', Icon);
+  // vue.component('WayIcon', EimIcon);
   vue.component('Fe', EimIcon);
   vue.component('HdIcon', EimIcon);
-  vue.component('HdRow', Layout.Row);
-  vue.component('HdCol', Layout.Col);
+  vue.component('WayRow', Layout.Row);
+  vue.component('WayCol', Layout.Col);
   vue.component('HdDialog', Dialog);
-  vue.component('HdCheckbox', Checkbox);
+  vue.component('HCheckbox', Checkbox);
   vue.component('HdRadio', Radio);
   vue.component('HdSwitch', Switch);
   vue.component('hdSlider', Slider);
   vue.component('HdInputNumber', InputNumber);
+  vue.component('WayScroller', Scroller);
+  vue.component('WayDateTime', DateTime);
   VueTarget = vue;
   
  

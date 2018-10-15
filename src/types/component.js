@@ -1,104 +1,69 @@
-import {isUndefined, isTrue, isTrueNotUndefined, isType, isSimpleType} from "@/utils/judge"
- 
-
-const HOOK = ['data', 'props', 'propsData', 'computed', 'methods',
+import Vue from 'vue';
+const HOOK = [
+    //vue
+    'data', 'props', 'propsData', 'computed', 'methods',
     'watch', 'el', 'template', 'render', 'renderError',
     'staticRenderFns', 'beforeCreate', 'created', 'beforeDestroy', 'destroyed',
     'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'activated', 'deactivated',
     'errorCaptured', 'directives', 'components', 'transitions', 'filters', 'provide',
-    'inject', 'model', 'parent', 'mixins', 'name', 'extends', 'delimiters', 'comments', 'inheritAttrs'
+    'inject', 'model', 'parent', 'mixins', 'name', 'extends', 'delimiters', 'comments', 'inheritAttrs',
+
+     //Object
+    '__lookupGetter__', '__lookupSetter__', '__defineGetter__', '__defineSetter__', 'hasOwnProperty',
+    'constructor', 'isPrototypeOf', 'toLocaleString', 'valueOf', 'propertyIsEnumerable', 'toString'
 ]
 
+const VueComponent = Vue.extend({});
+const noop = () => {};
+export default class WayComponent {
 
-/**
- * @file
- * Component为组件的基本类
- * 
- * 变量约定: _ 下划线开头的变量为 data的属性, 否则就是props属性
- * @date 2018-08-21
- * @author towaywu@gmail.com
- */
+     static INSTANCE(options = {}) {
+         return new this(options);
+     }
 
-/**
- * @class
- */
-export default class Component {
-    static toComponent() {
-        const _this =new this();
-        console.log("this,,,,,,", _this)
-        _this.instance();
-        return _this;
-    }
-    constructor(options) {
-        this.render = this.render;
-        this.$slots = {};
-        this.instance.call(this);
-    }
-
-    instance() {
-        const attr = new AttrTemplate(this);
-        attr.build();
-        this.data = () => {
-            return attr.data;
+      constructor(options) {
+        const prop = getProps(this);
+        this.methods =  {};
+        // console.log(Object.hasOwnProperty(this, "change"),Object.prototype.hasOwnProperty.call(this, 'change'));
+        for(const key in prop) {
+          // console.log("key", key);
+          if(HOOK.indexOf(key) === -1 && typeof this[key] === 'function') {
+             this.methods[key] = prop[key];
+          }
         }
-        this.props = attr.props;
-    }
 
-    render(h) {
-        return h('')
-    }
+
+        //  const vc = new VueComponent(options);
+        // //  console.log("vc", vc)
+        //  for(const key in vc) {
+        //    this[key] = vc[key];
+        //  }
+
+        
+         this.render = this.render;
+         this.data = this.data || (() => ({}));
+         this.props = this.props ? this.props() : noop();
+         this.computed = this.computed ? this.computed() : noop();
+         this.components = this.components ? this.components() : noop();
+         this.watch = this.watch ? this.watch(): noop(); 
+         this.mounted = this.mounted ? this.mounted : noop;
+      }
+
 }
 
 
 
-/**
- * @class 处理属性
- * @author towaywu
- * @date 2018-08-21
- */
-class AttrTemplate {
-    constructor(object) {
-        this.object = object;
-        this.props = Object.create(null);
-        this.data = Object.create(null);
-    }
 
-    build() {
-        for (let k in this.object) {
-            this.buildProps(k);
-            this.buildData(k);
-        }
-
-        return this;
-    }
-
-    buildProps(k) {
-        const prefix = k[0];
-        const value = this.object[k];
-        // console.log(k, typeof (this.object[k]), this.object[k]);
-        // console.log( (this.object[k]).constructor) 
-        if (HOOK.indexOf(k) === -1 && prefix !== '_' && prefix !== '$') {
-            console.log("value", k,  value, isTrueNotUndefined(value))
-            if(isTrueNotUndefined(value)){
-                if(isType(value, Object) && value.hasOwnProperty('type')) { //是否是props定义的类型
-                  this.props[k] = value;
-                } else {
-                    console.log(k, value)
-                    this.props[k] = {
-                        type: (value).constructor,
-                        default: isSimpleType(value)? value : (()=> value) //如果是对象则需要设定为一个函数
-                    };
-                }
+function getProps(obj) {
+  var p = {};
+  for (; obj != null; obj = Object.getPrototypeOf(obj)) {
+      var op = Object.getOwnPropertyNames(obj);
+      for (var i=0; i < op.length; i++) {
+          const name = op[i];
+          p[name] = obj[name];
+      }
+           
                
-            }
-        }
-
-    }
-
-    buildData(k) {
-        const prefix = k[0];
-        if (HOOK.indexOf(k) === -1 && isTrue(this.object.props) && !isUndefined(this.object.props[k]) && prefix === '_') {
-            this.data[k] = this.object[k];
-        }
-    }
+  }
+  return p;
 }

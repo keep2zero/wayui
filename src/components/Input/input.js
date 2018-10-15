@@ -1,107 +1,133 @@
-import Component from "@/types/component";
+import WayComponent from "@/types/component";
+// import WayComponent from "@/types/vue-component";
+const INPUT_CLASSES = {
+  PRIMARY: 'way-input-primary',
+  INFOR: 'way-input-infor',
+  SUCCESS: 'way-input-success',
+  ERROR: 'way-input-error'
+}
 
-class Input extends Component {
-  constructor(options) {
-    super(options)
-    this.place = {
-      type: String,
-      default: "请输入"
-    }
+class WayInputBase extends WayComponent {
+  constructor() {
+    super({});
+  }
 
-    this.value = {
-      type: String
-    }
-
-    this.iconPrefix = {
-      type: String,
-      default: ''
-    }
-
-    this.iconSuffix = {
-      type: String,
-      default: ''
-    }
-
-    this.isclear = {
-      type: Boolean,
-      default: true
-    }
-
-    this._text = ''
-
-    this.computed = {
-      empty() {
-         return !this.text||this.text.length == 0;
-      }
-    }
-
-
-    this.methods = {
-      clear() {
-         this.text = "";
-         this.$emit('clear');
-         this.$emit("input", this.text);
+  props() {
+    return {
+      place: {
+        type: String,
+        default: "请输入"
       },
 
-      change(e) {
-        console.log("e.target", e)
-         this.text = e.target.value;
-         this.$emit("input", this.text);
+      value: {
+        type: String,
+        default: ""
+      },
+
+      type: {
+        type: String,
+        default: ''
       }
     }
   }
 
+  computed() {
+    return {
+      typeStyle() { 
+        return INPUT_CLASSES[this.type];
+      }
+    }
+  }
+
+  data() {
+    return {
+      text: this.value
+    }
+  }
+
+  change(e) {
+    this.text = e.target.value;
+    this.$emit("input", this.text);
+  }
+
+  clear() {
+    this.text = '';
+    this.$emit('input', this.text);
+  }
+
   render(h) {
 
-     let prefix = "";
-     console.log("slots---->", this.change)
-     let iconPrefix = "";
-     if(this.iconPrefix) {
-         iconPrefix =  <way-icon icon={this.iconPrefix}></way-icon>;
-     }
-     if(this.iconPrefix || this.$slots.prefix) {
-       prefix = (
-        <div class="way-input__addon hd-input__prefix">
-         {iconPrefix}
-          {this.$slots.prefix}
-        </div>
-       )
-     }
-
-     let suffix = "";
-     let iconSuffix = '';
-     if(this.iconSuffix) {
-       iconSuffix = <way-icon icon={this.iconSuffix}></way-icon>
-     }
-     if(this.iconSuffix || this.$slots.suffix) {
-       suffix = (
-        <div class="way-input__addon way-input__suffix">
-          {iconSuffix}
-          {this.$slots.suffix}
-        </div>
-       )
-     }
-
-     let closeDom = '';
-     if(!this.empty && this.isclear) {
-       closeDom = (
-        <a  href="javascript:void(0)" onClick={this.clear} class="way-input__close">
+    let closeDom = '';
+    if (this.text.length > 0) {
+      closeDom = (
+        <a href="javascript:void(0)" onClick={this.clear} class="way-input__close">
           <i class="fa fa-times-circle"></i>
         </a>
-       )
-     } 
-
+      )
+    }
     return (
-      <div class="way-input">
-        {prefix}
-        <div class="way-input__input">
-          <input type="text" placeholder={this.place} onChange={this.change} />
-          {closeDom}
-        </div>
-        {suffix}
+      <div class={['way-input__input', this.typeStyle]}>
+        <input type="text" value={this.text} placeholder={this.place} onInput={this.change} />
+        {closeDom}
       </div>
     )
   }
 }
 
-export default Input.toComponent();
+
+class WayInput extends WayInputBase {
+
+  props() {
+    const prop = super.props();
+    prop.iconPefix = {
+      type: String,
+      default: ''
+    }
+
+    prop.iconSuffix = {
+      type: String,
+      default: ''
+    }
+    return prop;
+  }
+
+  render(h) {
+
+    let prefix = "";
+    let iconPrefix = "";
+    if (this.iconPrefix) {
+      iconPrefix = <way-icon icon={this.iconPrefix}></way-icon>;
+    }
+    if (this.iconPrefix || this.$slots.prefix) {
+      prefix = (
+        <div class="way-input__addon hd-input__prefix">
+          {iconPrefix}
+          {this.$slots.prefix}
+        </div>
+      )
+    }
+
+    let suffix = "";
+    let iconSuffix = '';
+    if (this.iconSuffix) {
+      iconSuffix = <way-icon icon={this.iconSuffix}></way-icon>
+    }
+    if (this.iconSuffix || this.$slots.suffix) {
+      suffix = (
+        <div class="way-input__addon way-input__suffix">
+          {iconSuffix}
+          {this.$slots.suffix}
+        </div>
+      )
+    }
+
+    return (
+      <div class="way-input">
+        {prefix} {super.render(h)} {suffix}
+      </div>
+    )
+  }
+
+}
+
+export default WayInput.INSTANCE();

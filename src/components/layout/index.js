@@ -1,6 +1,6 @@
-import Row from "./row.vue";
-import Col from "./col.vue";
+import Row from "./row";
+import Col from "./col";
 
 export default {
-  Row, Col
+  Row: Row.INSTANCE(), Col: Col.INSTANCE()
 }

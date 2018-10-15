@@ -1,3 +1,3 @@
 import InputNumber from "./input-number"
 
-export default InputNumber
+export default InputNumber.INSTANCE();

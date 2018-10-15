@@ -29,7 +29,11 @@ a:hover {
   color: #4263F5;
 }
 
-
+@import 'way-common';
 @import 'way-input';
 @import 'way-icon';
 @import 'way-button';
+@import 'way-layout';
+@import 'way-input-number';
+@import 'way-scroller';
+@import 'way-date-time';

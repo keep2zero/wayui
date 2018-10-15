@@ -1,22 +1,24 @@
 <template>
   <div> 
    
-    <div class="app-menu">
-      <router-link to="/input">输入框</router-link>
-      <router-link to="/area">城市地区选择</router-link>
-      <router-link to="/tree">树形</router-link>
+    <div class="app-menu" style="display:none;">
       <router-link to="/icon">ICON</router-link>
-      <router-link to="/button">按钮</router-link>
       <router-link to="/layout">布局</router-link>
-      <router-link to="/checkbox">复选框</router-link>
-      <router-link to="/radio">单选框</router-link>
+      <router-link to="/input">输入框</router-link>
       <router-link to="/number">数字框</router-link>
-      <router-link to="/date">日期</router-link>
+      <router-link to="/button">按钮</router-link>
+      <router-link to="/radio">单选框</router-link>
+      <router-link to="/checkbox">复选框</router-link>
       <router-link to="/switch">开关</router-link>
-      <router-link to="/slider">slider</router-link>
       <router-link to="/rate">Rate</router-link>
-      <router-link to="/bage">Bage</router-link>
+      <router-link to="/slider">slider</router-link>
       <router-link to="/tag">Tag</router-link>
+      <router-link to="/date">日期</router-link>
+      <router-link to="/area">城市地区选择</router-link>
+
+
+      <router-link to="/tree">树形</router-link>
+      <router-link to="/bage">Bage</router-link>
       <router-link to="/progress">进度条</router-link>
       <router-link to="/table">表格</router-link>
       <router-link to="/tab">Tab</router-link>

@@ -10,6 +10,9 @@ import RadioView from "./radio.vue";
 import SwitchView from "./switch.vue";
 import SliderView from "./slider.vue";
 import InputNumberView from "./input-number.vue";
+import Scroller from "./scroller.vue";
+import DateTime from "./date-time.vue";
+
 export default [
   {
     path: "/input",
@@ -68,5 +71,15 @@ export default [
   {
     path: "/number",
     component: InputNumberView
+  },
+
+  {
+    path: '/scroller',
+    component: Scroller
+  },
+
+  {
+    path: '/date-time',
+    component: DateTime
   }
 ]

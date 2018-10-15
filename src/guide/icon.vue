@@ -1,5 +1,6 @@
 <template>
   <div class="icon-box">
+      <way-icon icon="setting"></way-icon>
       <fe class="fe fe-setting"></fe>
       <fe class="fe fe-save"></fe>
       <fe class="fe fe-close"></fe>

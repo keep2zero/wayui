@@ -1,12 +1,12 @@
 <template>
-  <div class="hd-input-number" :style="{height: size + 'px'}">
-    <!-- <span class="hd-input-number__format">$</span> -->
-    <input type="text" class="hd-input-number__input" ref="input" v-model="value" :style="{width: width + 'px'}" />
-    <div class="hd-input-number__control">
-      <span class="hd-input-number__control-up" @click="goup">
+  <div class="way-input-number" :style="{height: size + 'px'}">
+    <!-- <span class="way-input-number__format">$</span> -->
+    <input type="text" class="way-input-number__input" ref="input" v-model="value" :style="{width: width + 'px'}" />
+    <div class="way-input-number__control">
+      <span class="way-input-number__control-up" @click="goup">
         <fe icon="up"></fe>
       </span>
-      <span class="hd-input-number__control-down" @click="godown">
+      <span class="way-input-number__control-down" @click="godown">
         <fe icon="down"></fe>
       </span>
     </div> 
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="less">
-.hd-input-number {
+.way-input-number {
   display: inline-flex;
   align-items: center;
   border: #eee 1px solid;
@@ -65,11 +65,11 @@ export default {
   overflow: hidden;
 }
 
-.hd-input-number__format {
+.way-input-number__format {
   padding: 0 10px;
 }
 
-.hd-input-number__input {
+.way-input-number__input {
   border: 0;
   padding: 0 10px;
   outline: 0;
@@ -78,20 +78,20 @@ export default {
   text-align: center;
 }
 
-.hd-input-number__control {
+.way-input-number__control {
   position: relative;
   width: 22px; 
   height: 100%;; 
   text-align: center;
 }
-.hd-input-number__control-up, .hd-input-number__control-down {
+.way-input-number__control-up, .way-input-number__control-down {
   height: 50%;
   display: block;
   border: #eee 1px solid;
   margin-top: -1px;
   margin-right: -1px;
 }
-.hd-input-number__control-up .fe, .hd-input-number__control-down .fe {
+.way-input-number__control-up .fe, .way-input-number__control-down .fe {
   font-size: 10px;
   color: #eee;
  

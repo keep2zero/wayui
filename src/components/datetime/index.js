@@ -1,3 +1,3 @@
-import DateTime from "./datetime.vue"
+import DateTime from "./datetime.js"
 
 export default DateTime;
