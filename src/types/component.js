@@ -47,6 +47,7 @@ export default class WayComponent {
          this.components = this.components ? this.components() : noop();
          this.watch = this.watch ? this.watch(): noop(); 
          this.mounted = this.mounted ? this.mounted : noop;
+         this.updated = this.updated ? this.updated : noop;
       }
 
 }

@@ -1,5 +1,10 @@
 import WayComponent from "@/types/component";
 import DatePicker from "./date-picker";
+import Panel from "./sub/panel";
+import Dom from "./dom";
+import Control from "./sub/control";
+import Picker from "./sub/picker";
+import DateFormat from './date-format';
 /**
  * @file
  * 功能:
@@ -19,21 +24,39 @@ class DateTime extends WayComponent {
   }
 
   data() {
+
+    DateFormat.getDate("yyyy%MM%dd HH:mm:ss")
+    DateFormat.parseDate("2018-10-22 12:22:11", "yyyy-MM-dd HH:mmss");
     let start = '';
     let end = '';
     if(this.type === TYPE.SINGLE) {
-      start = new DatePicker(this.value);
+      start = new DatePicker({defaultDate: this.value});
     }
 
+    let range = []
     if(this.type === TYPE.RANGE) {
-      const date = this.value.split("-");
-      start = new DatePicker({deafultDate:date[0], callback: this.selectDateCallback});
-      end = new DatePicker({defaultDate:date[1], callback: this.selectDateCallback});
+      const date = this.value.split("~");
+      range = [date[0], date[1]]
+      start = new DatePicker({
+        deafultDate:date[0], 
+        callback: this.selectDateCallback, 
+        dayCallback: this.dayCallback,
+        context: this,
+      });
+      end = new DatePicker({
+        defaultDate:date[1], 
+        callback: this.selectDateCallback, 
+        dayCallback: this.dayCallback,
+        context: this
+      });
     }
     return {
       showPop: false,
       startDatePicker: start,
-      endDatePicker: end
+      endDatePicker: end,
+      target: [],
+      targetRange: range,
+      picker : new Picker(this)
     }
   }
 
@@ -50,11 +73,20 @@ class DateTime extends WayComponent {
     }
   }
 
-  updated() {
-    if(this.showPop) {
-      // this.datePicker.toBind()
+  watch() {
+    return {
+      showPop(val) {
+        if(val) {
+          console.log(this.$refs.pop)
+          this.$refs.pop && this.picker.mount(this.$refs.pop);
+        } else {
+          this.$refs.pop && this.picker.unmount(this.$refs.pop);
+        }
+      }
     }
   }
+
+ 
 
   selectDateTime() {
     this.showPop = !this.showPop;
@@ -70,8 +102,36 @@ class DateTime extends WayComponent {
     }
   }
 
-  selectDateCallback() {
-    console.log('call')
+ 
+  dayCallback(node, item) {
+    // console.log(this)
+
+    // delete this.target.__ob__;
+    if(this.type === TYPE.RANGE) {
+      // console.log(this, node, item)
+ 
+    }
+ 
+  }
+
+  selectDateCallback(year, month, day, event) {
+    // console.dir(event.target.classList)
+    
+    if(event.target.classList.contains('active')) {
+      event.target.classList.remove('active');
+      const index = this.target.indexOf(event.target);
+      this.target.splice(index, 1);
+      this.targetRange.splice(index, 1);
+    } else {
+      if(this.target.length > 1) {
+        this.target.pop().classList.remove('active');
+        this.targetRange.pop();
+      }
+      event.target.classList.add("active")
+      this.target.push(event.target);
+      this.targetRange.push(`${year}-${month}-${day}`);
+    }
+    console.log(this.target, this.targetRange)
   }
 
   computed() {
@@ -86,14 +146,18 @@ class DateTime extends WayComponent {
   }
 
   render(h) {
-
+     
     return (
-      <div class="way-date-time">
+      <div class="way-date-time" ref="dateTime">
         <div class="way-date-time__select">
           {this.switchSelect} <way-icon icon="save"></way-icon>
         </div>
 
-        {DateTimePop.call(this, h)}
+         <div class="way-date-time__pop" v-show={this.showPop}>
+      <div class="way-date-time__pop-date" ref="pop">
+         
+      </div>
+    </div>
       </div>
     )
   }
@@ -111,8 +175,15 @@ function Single(h) {
 
 function Multi(h) {
 
-  const start = `${this.startDatePicker.yearFormat}-${this.startDatePicker.monthFormat}-${this.startDatePicker.dayFormat}`;
-  const end = `${this.endDatePicker.yearFormat}-${this.endDatePicker.monthFormat}-${this.endDatePicker.dayFormat}`;
+  let start = parseInt(this.targetRange[0].split('-').join(''));
+  let end = parseInt(this.targetRange[1].split('-').join(''));
+  if(start > end) {
+    const tem = this.targetRange[0];
+    start = this.targetRange[1];
+    end = tem;
+  }
+  // const start = `${this.startDatePicker.yearFormat}-${this.startDatePicker.monthFormat}-${this.startDatePicker.dayFormat}`;
+  // const end = `${this.endDatePicker.yearFormat}-${this.endDatePicker.monthFormat}-${this.endDatePicker.dayFormat}`;
 
   return (
     <div class="way-date-time__select-multi" onClick={this.selectDateTime}>
@@ -127,24 +198,7 @@ function Multi(h) {
   )
 }
 
-
-function DateTimePop(h) {
-  if(!this.showPop) return h('');
-  
-  const start = this.startDatePicker.render(h);
-  let end = '';
-  if(this.type === TYPE.RANGE) {
-    end = this.endDatePicker.render(h);
-  }
-  // console.log(node,"pl")
-  return (
-    <div class="way-date-time__pop" ref="pop">
-      <div class="way-date-time__pop-date">
-        {start} {end}
-      </div>
-    </div>
-  )
-}
+ 
 
 
 export default DateTime.INSTANCE();

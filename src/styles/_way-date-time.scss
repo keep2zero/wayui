@@ -49,8 +49,7 @@
   position: absolute;
   top: 36px;
   left: 0;
-  min-width: 200px;
-  height: 260px;
+ 
   border: #DEE2E7 1px solid;
   z-index: 2;
   background-color: #fff;
@@ -67,6 +66,10 @@
 */
 .way-date-time__date-picker {
   width: 200px;
+
+  &:last-child {
+    border-left: #eee 1px solid;
+  }
   &__date {
     height: 36px;
     display: flex;
@@ -77,7 +80,7 @@
 
     &__show {
       flex: 1 1 0;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       .show-month::before {
@@ -87,8 +90,9 @@
 
 
     &__prev-month, &__next-month {
+      display: inline-block;
       width: 7px;
-      height: 5px;
+      height: 0px;
       // background-color: #000;
       border-top: transparent 3px solid;
       border-bottom: 3px transparent solid;
@@ -161,6 +165,10 @@
       color: #bbb;
      // border-radius: 100%;
     }
+    .range {
+      color: #fff;
+      background-color: rgb(184, 252, 252);
+    }
   }
 
 
@@ -173,6 +181,9 @@
       padding: 6px;
       text-align: center;
     }
+    .active {
+      background-color: #71CDFF;
+    }
   }
 
   //年份
@@ -183,6 +194,10 @@
     &-item {
       padding: 6px;
       text-align: center;
+    }
+
+    .active {
+      background-color: #71CDFF;
     }
   }
 
