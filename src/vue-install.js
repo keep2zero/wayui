@@ -14,6 +14,7 @@ import Slider from '@/components/slider';
 import InputNumber from '@/components/input-number';
 import Scroller from '@/components/scroller';
 import DateTime from '@/components/datetime';
+import TreeLogic from '@/components/tree-logic';
 
 //style
 import "@/styles/index.scss";
@@ -42,6 +43,7 @@ const install = function(vue, option) {
   vue.component('HdInputNumber', InputNumber);
   vue.component('WayScroller', Scroller);
   vue.component('WayDateTime', DateTime);
+  vue.component('WayTreeLogic', TreeLogic);
   VueTarget = vue;
   
  

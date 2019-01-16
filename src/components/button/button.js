@@ -38,8 +38,6 @@ class Button extends WayComponent {
         <button class="way-button__btn" type="button" style={style}> {this.text}{slot} </button>
       </div>
     );
-
-
   }
 }
 

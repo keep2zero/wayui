@@ -12,6 +12,7 @@ import SliderView from "./slider.vue";
 import InputNumberView from "./input-number.vue";
 import Scroller from "./scroller.vue";
 import DateTime from "./date-time.vue";
+import TreeLogicView from "./tree-logic.vue";
 
 export default [
   {
@@ -36,6 +37,10 @@ export default [
   {
     path: "/tree",
     component: TreeView
+  },
+  {
+    path: "/tree-logic",
+    component: TreeLogicView
   },
 
   {

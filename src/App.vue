@@ -1,7 +1,7 @@
 <template>
   <div> 
    
-    <div class="app-menu" style="display:none;">
+    <div class="app-menu">
       <router-link to="/icon">ICON</router-link>
       <router-link to="/layout">布局</router-link>
       <router-link to="/input">输入框</router-link>
@@ -18,6 +18,7 @@
 
 
       <router-link to="/tree">树形</router-link>
+      <router-link to="/tree-logic">决策树</router-link>
       <router-link to="/bage">Bage</router-link>
       <router-link to="/progress">进度条</router-link>
       <router-link to="/table">表格</router-link>
