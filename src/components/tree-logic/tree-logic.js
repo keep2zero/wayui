@@ -1,6 +1,12 @@
 import WayComponent from '@/types/component';
-
+import TreeLogicDefault from './tree-logic-default';
 class TreeLogic extends WayComponent {
+
+  components() {
+    return {
+      TreeLogicDefault
+    }
+  }
 
   props() {
     return {
@@ -18,11 +24,7 @@ class TreeLogic extends WayComponent {
     })
     return (
       <div class="way-tree-logic">
-        <ul>
-          { 
-           lit
-          }
-        </ul>
+        <tree-logic-default></tree-logic-default> 
       </div>
     )
   }

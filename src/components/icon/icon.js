@@ -6,11 +6,19 @@ export default class WayIcon extends WayComponent {
       icon: {
         type: String,
         default: ''
+      },
+      platform: {
+        type: String,
+        default: 'self' //self, ali, fw
       }
     }
   }
   render(h) {
-    const classes = ['fe', 'fe-' + this.icon];
+    const classNames = {
+      ali: ["iconfont", "icon-" + this.icon],
+      self: ["fe", "fe-" + this.icon]
+    }
+    const classes = classNames[this.platform];
     return (
       <span class="way-icon">
         <i class={classes}></i>

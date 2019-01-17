@@ -29,6 +29,7 @@
       <router-link to="/panel">面板</router-link>
       <router-link to="/collapse">collapse</router-link>
       <router-link to="/dialog">弹出框</router-link>
+      <router-link to="/popover">popover</router-link>
     </div>
     <div class="app-body">
       <h1>{{title}}</h1>

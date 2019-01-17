@@ -15,6 +15,7 @@ import InputNumber from '@/components/input-number';
 import Scroller from '@/components/scroller';
 import DateTime from '@/components/datetime';
 import TreeLogic from '@/components/tree-logic';
+import Popover from '@/components/popover';
 
 //style
 import "@/styles/index.scss";
@@ -44,6 +45,7 @@ const install = function(vue, option) {
   vue.component('WayScroller', Scroller);
   vue.component('WayDateTime', DateTime);
   vue.component('WayTreeLogic', TreeLogic);
+  vue.component('WayPopover', Popover);
   VueTarget = vue;
   
  
