@@ -1,8 +1,12 @@
 <template>
-<div>
-  
-  <way-popover :node="$refs.hello">test</way-popover>
+<div style="padding: 200px;">
   <way-button ref="hello">hello</way-button>
+   <span class="box" ref="hello2">fsdfsdfsdf</span>
+
+
+  <way-popover node="hello" placement="bottom" trigger="clickout">test</way-popover>  
+ 
+  <way-popover node="hello2" placement="left" trigger="clickout">test</way-popover>  
 </div>
 </template>
 
@@ -12,6 +16,8 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
+  .box {
 
+  }
 </style>

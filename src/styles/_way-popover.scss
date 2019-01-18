@@ -41,6 +41,15 @@
   margin-left: 0;
   margin-right: 0;
 }
+
+@mixin placement($position) {
+  &[way-placement^=#{$position}] {
+    .way-popover__content-arrow {
+      @extend %#{$position}; 
+    }
+  }
+}
+
 .way-popover {
   position: absolute;
   min-width: 100px;
@@ -51,7 +60,7 @@
     height: 0;
     border-style: solid;
     position: absolute;
-    margin: 5px;
+    margin: -2.5px;
     border-color: #FF6600;
   }
 
@@ -60,17 +69,8 @@
   }
 
 
-  &[way-placement="left"] {
-    .way-popover__content-arrow {
-      @extend %left; 
-    }
-  }
-
-  
-  &[way-placement="right"] {
-    .way-popover__content-arrow {
-      @extend %right; 
-    }
-  }
- 
+  @include placement("left");
+  @include placement("right"); 
+  @include placement("top");
+  @include placement("bottom");
 }
