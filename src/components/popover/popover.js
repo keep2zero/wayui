@@ -22,26 +22,35 @@ class Popover extends WayComponent {
     return {
       visiable: false,
       clearout: -1,
-      ref: null
+      ref: null,
+      eventsClick: { }
     }
   }
 
 
   render(h) {
+     
     this.$nextTick(() => {
+      console.log(this.$parent, "thisiisisisi")
       if (!this.$parent.$refs[this.node]) {
         this.$el.parentNode.removeChild(this.$el);
         return;
       }
-      this.ref = this.$parent.$refs[this.node].$el || this.$parent.$refs[this.node];
+      this.ref = this.$parent.$refs[this.node].$el || this.$parent.$refs[this.node]; 
+     
       bindEvent.call(this);
     })
     return createContain.call(this, h);
+  }
+
+  mounted() {
+    console.log("kfjksdjfksdjflkd")
   }
 }
 
 function update(ref) {
   this.visiable = !this.visiable;
+  console.log(this.visiable)
   if (!this.visiable) return;
   this.$nextTick(() => {
     resetEvent.call(this);
@@ -53,18 +62,17 @@ function update(ref) {
 }
 
  
-
-const eventsClick = { }
+ 
 
 function bindEvent() {
   if (this.trigger === "click" || this.trigger === "clickout") {
+
+    console.log(this.ref)
      
-    this.ref.removeEventListener("click", eventsClick[this]||(()=>{}));
-    const handle = () => {
-      update.call(this)
-    }
-    eventsClick[this] = handle;
+    this.ref.removeEventListener("click", this.eventsClick["ref-click"]||(()=>{}));
+    const handle = () => update.call(this);
     this.ref.addEventListener("click", handle)
+    this.eventsClick["ref-click"] = handle;
   }
 
   if (this.trigger === 'hover') {
@@ -116,8 +124,7 @@ class Placement {
     this.box = box;
     this.refRect = this.ref.getBoundingClientRect();
     this.boxRect = this.box.getBoundingClientRect();
-
-    console.log(this.ref.offsetParent.scrollTop)
+    this.borderSize = 8
 
     this.scrollTarget = this.ref.offsetParent.parentNode;
 
@@ -128,7 +135,7 @@ class Placement {
   left() {
     return {
       top: this.horTop,
-      left: this.refRect.left - this.boxRect.width - 5 + this.scrollTarget.scrollLeft
+      left: this.refRect.left - this.boxRect.width - this.borderSize + this.scrollTarget.scrollLeft
     }
   }
 
@@ -136,20 +143,20 @@ class Placement {
      
     return {
       top: this.horTop,
-      left: this.refRect.right + 5 +  this.scrollTarget.scrollLeft
+      left: this.refRect.right + this.borderSize +  this.scrollTarget.scrollLeft
     }
   }
 
   top() {
     return {
-      top: this.refRect.top - this.boxRect.height - 5 + this.scrollTarget.scrollTop,
+      top: this.refRect.top - this.boxRect.height - this.borderSize + this.scrollTarget.scrollTop,
       left: this.verLeft
     }
   }
 
   bottom() {
     return {
-      top: this.refRect.bottom + 5 + this.scrollTarget.scrollTop,
+      top: this.refRect.bottom + this.borderSize + this.scrollTarget.scrollTop,
       left: this.verLeft 
     }
   }
@@ -170,12 +177,12 @@ function createContain(create) {
   const contentArrow = create('div', {
     class: "way-popover__content-arrow"
   })
-  return create("div", prop, [contentArrow, createContent.call(this, create), this.$slots.default])
+  return create("div", prop, [contentArrow, createContent.call(this, create)])
 }
 
 function createContent(create) {
   const prop = {
-    class: ["way-popover__cotnent"]
+    class: ["way-popover__content"]
 
   }
 
@@ -187,10 +194,10 @@ function createContent(create) {
 function createContentBody(create) {
 
   const prop = {
-    class: ["way-popover__cotnent-body"]
+    class: ["way-popover__content-body"]
   }
 
-  return create("div", prop, this.content);
+  return create("div", prop, this.$slots.default);
 }
 
 export default Popover.INSTANCE();

@@ -1,0 +1,15 @@
+.way-tree-logic {
+  position: relative;
+  &__default {
+     
+    display: inline-block; 
+    position: absolute;
+
+    &-title {
+      border: #eee 1px solid;
+      border-radius: 5px;
+      display: inline-block; 
+      padding: 5px;
+    }
+  }
+}

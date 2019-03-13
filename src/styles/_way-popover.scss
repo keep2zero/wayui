@@ -52,20 +52,22 @@
 
 .way-popover {
   position: absolute;
-  min-width: 100px;
-  min-height: 100px;
-  background: #222;
+   
+  
+ 
   .way-popover__content-arrow {
     width: 0;
     height: 0;
     border-style: solid;
     position: absolute;
     margin: -2.5px;
-    border-color: #FF6600;
+    border-color: #EFEFEF;
   }
 
   .way-popover__content {
-  
+    background: #EFEFEF;
+    padding: 8px;
+    border-radius: 5px;
   }
 
 
